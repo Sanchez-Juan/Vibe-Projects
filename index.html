@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f1720"><title>Química Orgánica · Repaso</title>
+<style>
+  :root{
+    --bg:#0f1720; --bg2:#141f2b; --ink:#e8edf2; --ink-dim:#9fb0bd;
+    --accent:#4fd1c5; --accent2:#f2a154; --line:#25333f; --card:#16212c;
+    box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  @media (prefers-color-scheme: light){
+    :root:not([data-theme="dark"]){
+      --bg:#f7f5f0; --bg2:#ffffff; --ink:#1c2530; --ink-dim:#5b6b78;
+      --accent:#0f7d73; --accent2:#c76b2b; --line:#e1ddd2; --card:#ffffff;
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-padding-top:env(safe-area-inset-top,0px); scroll-behavior:smooth;}
+  html,body{height:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    line-height:1.6;
+  }
+  header.top{
+    position:sticky; top:env(safe-area-inset-top,0px); z-index:5;
+    background:var(--bg); border-bottom:1px solid var(--line);
+    padding:18px 20px;
+  }
+  header.top h1{
+    margin:0; font-size:1.15rem; font-weight:600; letter-spacing:.2px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  }
+  header.top p{margin:4px 0 0; color:var(--ink-dim); font-size:.85rem; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;}
+  nav{
+    display:flex; gap:8px; overflow-x:auto; padding:12px 20px 0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  }
+  nav a{
+    flex:0 0 auto; color:var(--ink-dim); text-decoration:none; font-size:.78rem;
+    padding:6px 10px; border:1px solid var(--line); border-radius:999px; white-space:nowrap;
+  }
+  nav a:hover{color:var(--accent); border-color:var(--accent);}
+  main{max-width:760px; margin:0 auto; padding:28px 20px 80px;}
+  section{padding:30px 0; border-bottom:1px solid var(--line);}
+  section:last-child{border-bottom:none;}
+  .num{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    color:var(--accent); font-size:.8rem; font-weight:600; letter-spacing:.5px;
+  }
+  h2{margin:4px 0 12px; font-size:1.5rem; font-weight:600;}
+  h3{font-size:1.02rem; color:var(--accent2); margin:20px 0 6px; font-weight:600;}
+  p{margin:8px 0; max-width:66ch;}
+  ul,ol{margin:8px 0; padding-left:20px; max-width:64ch;}
+  li{margin:4px 0;}
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:10px;
+    padding:14px 16px; margin:14px 0;
+  }
+  .card p{margin:4px 0;}
+  .tag{
+    display:inline-block; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:.72rem; color:var(--accent); border:1px solid var(--accent); border-radius:5px;
+    padding:1px 6px; margin-right:6px;
+  }
+  table{width:100%; border-collapse:collapse; margin:12px 0; font-size:.92rem;}
+  th,td{text-align:left; padding:7px 10px; border-bottom:1px solid var(--line); vertical-align:top;}
+  th{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; font-size:.75rem; color:var(--ink-dim); font-weight:600;}
+  .grid{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+  @media (max-width:520px){.grid{grid-template-columns:1fr;}}
+  .box{background:var(--card); border:1px solid var(--line); border-radius:8px; padding:10px 12px;}
+  .box b{color:var(--accent2);}
+  .overflow{overflow-x:auto;}
+  footer{text-align:center; color:var(--ink-dim); font-size:.78rem; padding:30px 20px 50px; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;}
+
+.tabs{display:flex;gap:8px;padding:12px 20px 0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.tabs button{flex:1;background:none;color:var(--ink-dim);border:1px solid var(--line);border-radius:8px;padding:9px 6px;font-size:.85rem;cursor:pointer}
+.tabs button.on{color:var(--bg);background:var(--accent);border-color:var(--accent);font-weight:600}
+.view{display:none}.view.on{display:block}
+.opt{display:block;width:100%;text-align:left;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:11px 12px;margin:8px 0;font:inherit;cursor:pointer}
+.opt.ok{border-color:#3ecf8e;background:rgba(62,207,142,.12)}.opt.bad{border-color:#e5484d;background:rgba(229,72,77,.12)}
+.btn{background:var(--accent);color:var(--bg);border:0;border-radius:8px;padding:10px 16px;font-weight:600;cursor:pointer;font-family:-apple-system,sans-serif}
+.fb{margin:10px 0;color:var(--ink-dim)}.prog{color:var(--ink-dim);font-size:.85rem;font-family:-apple-system,sans-serif}
+.chk{display:flex;gap:10px;align-items:flex-start;margin:8px 0}.chk input{margin-top:6px;accent-color:var(--accent)}
+.mol{display:block;width:100%;max-width:340px;margin:14px auto;background:#fff;border-radius:10px;padding:10px}</style></head><body>
+<header class="top"><h1>Fundamentos de Química Orgánica</h1><p>Repaso · maestría, primer semestre</p></header>
+<div class="tabs"><button data-v="guia" class="on">Guía</button><button data-v="quiz">Quiz</button><button data-v="ejer">Ejercicio integrador</button></div>
+<main>
+<div id="guia" class="view on">
+
+<section class="g" id="hibridacion">
+  <div class="num">01</div>
+  <h2>Hibridación</h2>
+  <p>Describe cómo se mezclan los orbitales atómicos del carbono para formar enlaces. Determina geometría, ángulos de enlace y tipo de enlace (σ o π).</p>
+  <table>
+    <tr><th>Tipo</th><th>Orbitales</th><th>Geometría</th><th>Ángulo</th><th>Ejemplo</th></tr>
+    <tr><td>sp³</td><td>4 orbitales sp³</td><td>Tetraédrica</td><td>109.5°</td><td>CH₄, etano</td></tr>
+    <tr><td>sp²</td><td>3 sp² + 1 p</td><td>Trigonal plana</td><td>120°</td><td>eteno, carbonilo</td></tr>
+    <tr><td>sp</td><td>2 sp + 2 p</td><td>Lineal</td><td>180°</td><td>etino, nitrilos</td></tr>
+  </table>
+  <div class="card">
+    <p><b>Regla práctica:</b> cuenta enlaces σ + pares libres alrededor del átomo. 4 → sp³, 3 → sp², 2 → sp. A mayor carácter s, más corto y fuerte el enlace, y más electronegativo se comporta el carbono.</p>
+  </div>
+</section>
+
+<section class="g" id="grupos">
+  <div class="num">02</div>
+  <h2>Grupos funcionales y clases de compuestos</h2>
+  <p>Un grupo funcional es el átomo o conjunto de átomos que define la reactividad de una molécula, independientemente del resto de la cadena.</p>
+  <div class="grid">
+    <div class="box"><b>Alcanos/alquenos/alquinos</b><br>C–C, C=C, C≡C</div>
+    <div class="box"><b>Alcohol</b><br>–OH sobre carbono sp³</div>
+    <div class="box"><b>Éter</b><br>C–O–C</div>
+    <div class="box"><b>Aldehído</b><br>–CHO (carbonilo terminal)</div>
+    <div class="box"><b>Cetona</b><br>C=O entre dos carbonos</div>
+    <div class="box"><b>Ácido carboxílico</b><br>–COOH</div>
+    <div class="box"><b>Éster</b><br>–COO–</div>
+    <div class="box"><b>Amida</b><br>–CONH–</div>
+    <div class="box"><b>Amina</b><br>–NH₂, –NHR, –NR₂</div>
+    <div class="box"><b>Nitrilo</b><br>–C≡N</div>
+  </div>
+  <div class="card">
+    <p><b>Orden de prioridad (para nombrar y para reactividad relativa del carbono carbonílico):</b> ácidos &gt; ésteres &gt; amidas &gt; nitrilos &gt; aldehídos &gt; cetonas &gt; alcoholes &gt; aminas &gt; alquenos/alquinos &gt; alcanos.</p>
+  </div>
+</section>
+
+<section class="g" id="isomeria">
+  <div class="num">03</div>
+  <h2>Isomería</h2>
+  <p>Compuestos con la misma fórmula molecular pero distinta estructura o distribución espacial.</p>
+  <h3>Estructural (constitucional)</h3>
+  <ul>
+    <li><b>De cadena:</b> difieren en el esqueleto carbonado (n-butano vs isobutano).</li>
+    <li><b>De posición:</b> mismo grupo funcional, distinta ubicación (2-propanol vs 1-propanol).</li>
+    <li><b>De grupo funcional:</b> mismos átomos, distinto grupo funcional (etanol vs dimetiléter).</li>
+  </ul>
+  <h3>Espacial (estereoisomería)</h3>
+  <ul>
+    <li><b>Geométrica (cis/trans o E/Z):</b> por restricción de rotación en dobles enlaces o anillos.</li>
+    <li><b>Óptica (enantiómeros/diastereómeros):</b> por centros estereogénicos; los enantiómeros son imágenes especulares no superponibles.</li>
+    <li><b>Conformacional:</b> por rotación libre alrededor de enlaces σ (silla/bote, eclipsada/alternada).</li>
+  </ul>
+  <div class="card">
+    <p><b>Distingue rápido:</b> ¿cambia la conectividad átomo-átomo? → estructural. ¿Misma conectividad, distinta orientación en el espacio? → espacial.</p>
+  </div>
+</section>
+
+<section class="g" id="resonancia">
+  <div class="num">04</div>
+  <h2>Efecto resonante (mesomérico)</h2>
+  <p>Ocurre cuando los electrones π o pares libres se deslocalizan a través de un sistema conjugado, distribuyendo la carga o estabilizando la molécula. Se representa con varias estructuras de Lewis (resonantes) que contribuyen a un híbrido real.</p>
+  <ul>
+    <li><b>+M (donador):</b> grupos con pares libres que ceden densidad electrónica al anillo o cadena (–NH₂, –OH, –OR, halógenos).</li>
+    <li><b>–M (aceptor):</b> grupos que retiran densidad electrónica por conjugación (–NO₂, –C=O, –C≡N).</li>
+  </ul>
+  <div class="card">
+    <p><b>Clave:</b> el efecto resonante actúa a través de enlaces π (conjugación), no a través de σ. Explica la estabilidad de aniones carboxilato, fenóxido, y la reactividad de anillos aromáticos sustituidos.</p>
+  </div>
+</section>
+
+<section class="g" id="inductivo">
+  <div class="num">05</div>
+  <h2>Efecto inductivo</h2>
+  <p>Es la transmisión de carga a través de enlaces σ debido a diferencias de electronegatividad. Se debilita rápidamente con la distancia (efecto de corto alcance).</p>
+  <ul>
+    <li><b>–I (atractor):</b> halógenos, –OH, –NO₂, –COOH — desestabilizan cargas positivas cercanas, estabilizan negativas.</li>
+    <li><b>+I (donador):</b> grupos alquilo (–CH₃, –C₂H₅) — estabilizan cargas positivas cercanas (por eso los carbocationes terciarios son más estables).</li>
+  </ul>
+  <div class="card">
+    <p><b>Inductivo vs resonante:</b> el inductivo es siempre a través de σ y decae con la distancia; el resonante requiere conjugación π y puede actuar a distancia si el sistema está conjugado. Un grupo puede tener efectos opuestos en cada categoría (ej. halógenos: –I pero +M).</p>
+  </div>
+</section>
+
+<section class="g" id="conjugacion">
+  <div class="num">06</div>
+  <h2>Conjugación</h2>
+  <p>Se da cuando hay alternancia de enlaces simples y dobles (o pares libres adyacentes a un π), permitiendo que los orbitales p se traslapen de forma continua.</p>
+  <ul>
+    <li>Requiere que los átomos conjugados sean o se acerquen a la hibridación sp² (orbitales p paralelos).</li>
+    <li>Aumenta la estabilidad de la molécula (menor energía) y reduce la brecha HOMO-LUMO — por eso los polienos conjugados absorben luz visible/UV.</li>
+    <li>Es la base estructural que permite el efecto resonante.</li>
+  </ul>
+</section>
+
+<section class="g" id="hiperconjugacion">
+  <div class="num">07</div>
+  <h2>Hiperconjugación</h2>
+  <p>Interacción estabilizadora entre un orbital σ (C–H o C–C) lleno y un orbital p vacío o un sistema π adyacente. A diferencia de la conjugación clásica, no requiere alternancia formal de enlaces dobles.</p>
+  <ul>
+    <li>Explica por qué los carbocationes y radicales más sustituidos son más estables (más enlaces σ C–H/C–C adyacentes que donan densidad).</li>
+    <li>También explica la mayor estabilidad de alquenos más sustituidos (regla de Zaitsev).</li>
+  </ul>
+  <div class="card">
+    <p><b>Mnemotecnia:</b> "más sustituyentes alrededor = más hiperconjugación = más estable" — aplica a carbocationes, radicales y alquenos.</p>
+  </div>
+</section>
+
+<section class="g" id="aromaticidad">
+  <div class="num">08</div>
+  <h2>Aromaticidad</h2>
+  <p>Un compuesto es aromático si cumple <b>todos</b> estos criterios (regla de Hückel):</p>
+  <ol>
+    <li>Es cíclico.</li>
+    <li>Es plano (permite el traslape continuo de orbitales p).</li>
+    <li>Está completamente conjugado (cada átomo del anillo tiene un orbital p).</li>
+    <li>Tiene 4n+2 electrones π deslocalizados en el sistema (n = 0,1,2…): 2, 6, 10, 14…</li>
+  </ol>
+  <div class="grid">
+    <div class="box"><b>Aromático</b><br>benceno (6π), piridina, ion ciclopentadienilo (6π)</div>
+    <div class="box"><b>Antiaromático</b><br>ciclobutadieno (4π) — cumple 1-3 pero tiene 4n π, es inestable</div>
+    <div class="box"><b>No aromático</b><br>ciclohexano (no conjugado), ciclooctatetraeno (no plano)</div>
+  </div>
+</section>
+
+<section class="g" id="imf">
+  <div class="num">09</div>
+  <h2>Fuerzas intermoleculares</h2>
+  <table>
+    <tr><th>Fuerza</th><th>Origen</th><th>Fuerza relativa</th><th>Ejemplo</th></tr>
+    <tr><td>Puente de hidrógeno</td><td>H unido a N/O/F con par libre cercano</td><td>Fuerte</td><td>alcoholes, ácidos, amidas</td></tr>
+    <tr><td>Dipolo-dipolo</td><td>Moléculas polares permanentes</td><td>Media</td><td>cetonas, aldehídos</td></tr>
+    <tr><td>Fuerzas de dispersión (London)</td><td>Dipolos inducidos momentáneos</td><td>Débil (aumenta con la masa/superficie)</td><td>alcanos, gases nobles</td></tr>
+    <tr><td>Ion-dipolo</td><td>Ion cerca de molécula polar</td><td>Fuerte</td><td>NaCl en agua</td></tr>
+  </table>
+  <div class="card">
+    <p><b>Para predecir puntos de ebullición:</b> puente de H &gt; dipolo-dipolo &gt; dispersión, pero una cadena muy larga puede hacer que la dispersión supere a un dipolo débil en una molécula más pequeña. Siempre compara masa molar y forma (más superficie de contacto = más dispersión).</p>
+  </div>
+</section>
+
+</div>
+<div id="quiz" class="view"><h2>Quiz de práctica</h2><select id="rsel" class="opt"></select><div id="qbox"></div></div>
+<div id="ejer" class="view"><h2>Ejercicio integrador</h2>
+<p>Familia de la <b>4-metoxi-N-metilbenzamida</b>. Resuélvelo en papel y marca cada punto al terminarlo.</p>
+<img src="estructura.png" alt="Estructura de la 4-metoxi-N-metilbenzamida" class="mol"><div id="chk"></div></div>
+</main>
+<script src="data.js"></script><script src="app.js"></script></body></html>
